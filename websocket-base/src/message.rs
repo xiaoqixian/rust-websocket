@@ -177,7 +177,7 @@ impl<'a> ws::dataframe::DataFrame for Message<'a> {
 impl<'a> ws::Message for Message<'a> {
 	/// Attempt to form a message from a series of data frames
 	fn serialize(&self, writer: &mut dyn Write, masked: bool) -> WebSocketResult<()> {
-		self.write_to(writer, masked)
+		self.write_to(writer, masked) //write_to implemented from DataFrameTrait and using the default implementation
 	}
 
 	/// Returns how many bytes this message will take up

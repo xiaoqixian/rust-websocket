@@ -62,7 +62,7 @@ where
 		P: Into<String>,
 	{
 		upsert_header!(self.headers; WebSocketProtocol; {
-			Some(protos) => protos.0.push(protocol.into()),
+			Some(protos) => protos.0.push(protocol.into()),//protos: &mut WebSocketProtocol
 			None => WebSocketProtocol(vec![protocol.into()])
 		});
 		self
@@ -143,6 +143,9 @@ where
 		Ok(())
 	}
 
+    //set websocket key
+    //set connection as upgrade
+    //set upgrade value as websocket name.
 	#[doc(hidden)]
 	pub fn prepare_headers(&mut self, custom: Option<&Headers>) -> StatusCode {
 		if let Some(headers) = custom {

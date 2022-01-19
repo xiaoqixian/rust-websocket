@@ -174,6 +174,9 @@ where
 			Err(e) => return Err((stream, None, buffer, e.into())),
 		};
 
+        // An Incoming struct includes version, subject, headers
+        // represents http request version, subject (request line or status line),
+        // and headers, respectively.
 		match validate(&request.subject.0, request.version, &request.headers) {
 			Ok(_) => Ok(WsUpgrade {
 				headers: Headers::new(),

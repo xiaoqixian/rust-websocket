@@ -50,6 +50,7 @@ pub trait DataFrame {
 	fn take_payload(self) -> Vec<u8>;
 
 	/// Writes a DataFrame to a Writer.
+    /// Writer normally is a Stream.
 	fn write_to(&self, writer: &mut dyn Write, mask: bool) -> WebSocketResult<()> {
 		let mut flags = dfh::DataFrameFlags::empty();
 		if self.is_last() {
